@@ -2,6 +2,7 @@ let var1 = document.querySelector('.var1');
 let var2 = document.querySelector('.var2');
 let sign = document.querySelector('.sign');
 let equal = document.querySelector(".result");
+let show = document.querySelector("#show");
 
 
 let variable1 = var1.textContent;
@@ -20,6 +21,7 @@ function variable(){
     for (let i=0; i<size; i++){
         btn[i].onclick = () => {
             variable1 = variable1 + btn[i].textContent;
+            show.textContent = variable1;
             console.log(`Result is ${variable1}`);
             if (variable1.length<1 || variable2.length<1){
                 equal.disabled =true;
@@ -37,10 +39,10 @@ function operator() {
     for (let i = 0; i< size; i++){
         oper[i].onclick = () => {
             operation = oper[i].textContent;
+            show.textContent = operation;
             console.log(operation)
             variable2 = variable1;
             variable1 = '';
-            // console.log(variable2);
         };
         };}
 
@@ -51,16 +53,20 @@ function result(){
        let result2 = Number(variable2);
        switch (operation) {
         case '+':
-            console.log(result2 + result1)
+            console.log(result2 + result1);
+            show.textContent = (result2 + result1);
             break;
         case '-':
-            console.log(result2 - result1)
+            console.log(result2 - result1);
+            show.textContent = (result2 - result1);
             break;   
         case '/':
-            console.log(result2 / result1)
+            console.log(result2 / result1);
+            show.textContent = (result2 / result1);
             break; 
         case '*':
-            console.log(result2 * result1)
+            console.log(result2 * result1);
+            show.textContent = (result2 * result1);
             break; 
         default:
             console.log("YOU ARE STUPID!!!")
