@@ -1,8 +1,9 @@
 let var1 = document.querySelector('.var1');
 let var2 = document.querySelector('.var2');
 let sign = document.querySelector('.sign');
-let equal = document.querySelector(".result");
-let show = document.querySelector("#show");
+let equal = document.querySelector('.result');
+let show = document.querySelector('#show');
+let clear = document.querySelector('.clear')
 const oper = document.querySelectorAll('.operator');
 
 
@@ -13,6 +14,8 @@ let operation = sign.textContent;
 variable();
 operator();
 result();
+disappear
+();
 
 
 function variable(){
@@ -30,7 +33,7 @@ function variable(){
                 for (j=0;j<4;j++){
                     oper[j].disabled = false;
                 }
-                variable1 = variable1 + btn[i].textContent;
+                variable1 += btn[i].textContent;
                 show.textContent = variable1;
                 console.log(`Result is ${variable1}`);
 
@@ -50,12 +53,13 @@ function operator() {
     let size = oper.length;
     for (let i = 0; i< size; i++){
         oper[i].onclick = () =>{
-            // If we select the operator again, the variable already stored will disappear.
+            // If we select the operator again, the variable already stored will disappear. 
+            // So added return to prevent that.
             if (operation.length==1){
-                alert("You have already selected an operator.")
-                // operation = oper[i].textContent;
-                // show.textContent = operation;
-                // console.log(operation)
+                // alert("You have already selected an operator.")
+                operation = oper[i].textContent;
+                show.textContent = operation;
+                console.log(operation)
                 return;
             } 
             operation = oper[i].textContent;
@@ -75,6 +79,7 @@ function result(){
     equal.onclick = () =>{
        let result1 = Number(variable1);
        let result2 = Number(variable2);
+
        switch (operation) {
         case '+':
             console.log(result2 + result1);
@@ -106,3 +111,16 @@ function result(){
             oper[j].disabled = true;
             }
     };}
+
+
+function disappear() {
+    clear.onclick = () => {
+        variable1 = '';
+        variable2 = '';
+        operation = '';
+        show.textContent = variable1;
+        for (let j=0; j<4; j++){
+            oper[j].disabled = true;
+            }
+    }
+}
